@@ -251,11 +251,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const projetLabels = {
     tonte: 'Tonte',
+    'tonte-bordures': 'Tonte + bordures',
     haies: 'Taille de haies',
     debroussaillage: 'Debroussaillage',
     entretien: 'Entretien regulier',
-    remise: 'Terrain remis au propre',
+    remise: 'Remise en état terrain',
     nettoyage: 'Nettoyage exterieur',
+    elagage: 'Elagage',
+    evacuation: 'Evacuation déchets verts',
+    bricolage: 'Petit bricolage',
     autre: 'Petit bricolage',
   };
 
