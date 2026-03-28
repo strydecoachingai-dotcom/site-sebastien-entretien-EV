@@ -1,0 +1,27 @@
+# Dépendances
+node_modules/
+
+# Build output (Vercel rebuild depuis les sources)
+dist/
+
+# Variables d'environnement
+.env
+.env.local
+.env.*.local
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

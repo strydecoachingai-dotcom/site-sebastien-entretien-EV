@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contactez Sebastien Fontaine pour un devis rapide d'entretien d'espaces verts a Lyon + 20 km." />
+  <title>Contact | Devis entretien espaces verts Lyon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Sebastien Entretien Espaces Verts",
+      "about": {
+        "@type": "LocalBusiness",
+        "name": "Sebastien Fontaine - Entretien Espaces Verts",
+        "telephone": "+33683216528",
+        "email": "sebastien.fontaine1109@gmail.com",
+        "areaServed": "Lyon + 20 km"
+      },
+      "mainEntity": {
+        "@type": "ContactPoint",
+        "telephone": "+33683216528",
+        "contactType": "customer service",
+        "areaServed": "FR-69",
+        "availableLanguage": ["fr"]
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__icon">EV</span>
+        <span class="logo__text">Sebastien <em>Entretien Espaces Verts</em></span>
+      </a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Accueil</a></li>
+          <li><a href="services.html" class="nav__link">Services</a></li>
+          <li><a href="realisations.html" class="nav__link">Realisations</a></li>
+          <li><a href="a-propos.html" class="nav__link">A propos</a></li>
+          <li><a href="avis-clients.html" class="nav__link">Avis clients</a></li>
+          <li><a href="contact.html" class="nav__link nav__link--cta nav__link--active">Obtenir mon devis gratuit en 24h</a></li>
+        </ul>
+      </nav>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <section class="page-hero page-hero--contact">
+      <div class="page-hero__bg"></div>
+      <div class="container page-hero__content">
+        <span class="section-label section-label--light">Contact rapide</span>
+        <h1 class="page-hero__title">Recevez votre devis gratuit en moins de 24h</h1>
+        <p class="page-hero__subtitle">Simple, rapide, sans engagement - reponse garantie</p>
+      </div>
+    </section>
+
+    <section class="contact contact--page" id="contact">
+      <div class="container contact-page-grid">
+        <aside class="contact-page-card">
+          <h2>Coordonnees directes</h2>
+          <p>Je reponds rapidement pour les demandes autour de Lyon et des communes voisines.</p>
+          <ul class="contact-page-list">
+            <li><strong>Telephone:</strong> <a href="tel:0683216528">06 83 21 65 28</a></li>
+            <li><strong>Email:</strong> <a href="mailto:sebastien.fontaine1109@gmail.com">sebastien.fontaine1109@gmail.com</a></li>
+            <li><strong>Zone:</strong> Lyon + 20 km</li>
+            <li><strong>Horaires:</strong> Lun-Sam 8h-18h</li>
+          </ul>
+          <a class="btn btn--outline btn--full btn--large" href="tel:0683216528">&#128222; Appeler maintenant</a>
+        </aside>
+
+        <form class="contact__form contact__form--page" id="contactForm" novalidate>
+          <p class="contact__form-intro">Formulaire ultra rapide - Moins de 20 secondes</p>
+
+          <div class="form-group">
+            <label>Type de besoin <span class="required-star">*</span></label>
+            <div class="need-chips" id="needChips" role="group" aria-label="Type de besoin">
+              <button type="button" class="need-chip" data-value="Tonte">Tonte</button>
+              <button type="button" class="need-chip" data-value="Tonte + bordures">Tonte + bordures</button>
+              <button type="button" class="need-chip" data-value="Taille de haies">Taille de haies</button>
+              <button type="button" class="need-chip" data-value="Debroussaillage">Debroussaillage</button>
+              <button type="button" class="need-chip" data-value="Nettoyage exterieur">Nettoyage exterieur</button>
+              <button type="button" class="need-chip" data-value="Terrain remis au propre">Terrain remis au propre</button>
+              <button type="button" class="need-chip" data-value="Elagage">Elagage</button>
+              <button type="button" class="need-chip" data-value="Evacuation encombrants">Evacuation encombrants</button>
+              <button type="button" class="need-chip" data-value="Petit bricolage">Petit bricolage</button>
+            </div>
+            <input type="hidden" id="projet" name="projet" required />
+          </div>
+
+          <div class="form-row form-row--single">
+            <div class="form-group">
+              <label for="ville">Localisation</label>
+              <input type="text" id="ville" name="ville" placeholder="Votre ville (Lyon, Bron, Villeurbanne...)" autocomplete="address-level2" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" placeholder="Votre nom" autocomplete="family-name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="vous@exemple.fr" autocomplete="email" inputmode="email" />
+            </div>
+          </div>
+
+          <div class="form-row form-row--single">
+            <div class="form-group">
+              <label for="tel">Telephone <span class="required-star">*</span></label>
+              <input type="tel" id="tel" name="tel" placeholder="Votre numero" required autocomplete="tel" inputmode="numeric" />
+            </div>
+          </div>
+
+          <div class="form-row form-row--single">
+            <div class="form-group">
+              <label for="message">Message (facultatif)</label>
+              <textarea id="message" name="message" placeholder="Precisez si besoin" rows="4"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full btn--large devis-cta">Recevoir mon devis gratuit</button>
+          <p class="form-note">Nous vous recontactons rapidement apres votre demande</p>
+          <p class="form-note">Simple, rapide, sans engagement</p>
+
+          <div class="form-trust-points">
+            <span>✔ Reponse sous 24h</span>
+            <span>✔ Sans engagement</span>
+          </div>
+
+          <a class="btn btn--outline btn--full btn--large call-cta-mobile" href="tel:0683216528">&#128222; Appeler maintenant</a>
+
+          <p class="form-prefill-feedback" id="formPrefillFeedback" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="logo logo--light">
+          <span class="logo__icon">EV</span>
+          <span class="logo__text">Sebastien <em>Entretien Espaces Verts</em></span>
+        </a>
+        <p class="footer__name">Sebastien Fontaine</p>
+        <p class="footer__activity">Entretien espaces verts</p>
+        <p class="footer__tagline">Entretien rapide, jardin toujours propre.</p>
+      </div>
+      <div class="footer__nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="realisations.html">Realisations</a></li>
+          <li><a href="a-propos.html">A propos</a></li>
+          <li><a href="avis-clients.html">Avis clients</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__contact">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:0683216528">06 83 21 65 28</a></li>
+          <li><a href="mailto:sebastien.fontaine1109@gmail.com">sebastien.fontaine1109@gmail.com</a></li>
+          <li>Lyon + 20 km</li>
+          <li>Lun-Sam : 8h-18h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>(c) 2026 Sebastien Entretien Espaces Verts - Tous droits reserves</p>
+        <div class="footer__legal">
+          <a href="mentions-legales.html">Mentions legales</a>
+          <a href="politique-confidentialite.html">Politique de confidentialite</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"><span class="toast__icon">OK</span><p>Votre demande a ete envoyee ! Je vous rappelle sous 48h.</p></div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
+
+
+
