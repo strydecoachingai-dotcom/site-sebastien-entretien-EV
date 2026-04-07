@@ -180,16 +180,84 @@ document.addEventListener('DOMContentLoaded', () => {
   const beforeAfterDescription = document.getElementById('beforeAfterDescription');
 
   if (beforeAfterRange && beforeAfterViewer && baAvant && baApres && beforeAfterDivider) {
+    let isPointerDragging = false;
+
     const updateBeforeAfter = () => {
       const value = Number(beforeAfterRange.value);
-      baApres.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      baApres.style.clipPath = `inset(0 0 0 ${value}%)`;
       beforeAfterDivider.style.left = `${value}%`;
     };
 
+    const setCompareSheetMode = (compareImage) => {
+      const imageUrl = `url("${compareImage}")`;
+      baAvant.style.backgroundImage = imageUrl;
+      baApres.style.backgroundImage = imageUrl;
+      baAvant.style.backgroundSize = '200% auto';
+      baApres.style.backgroundSize = '200% auto';
+      baAvant.style.backgroundPosition = '0% center';
+      baApres.style.backgroundPosition = '100% center';
+    };
+
+    const setSplitMode = (beforeImage, afterImage) => {
+      baAvant.style.backgroundImage = `url("${beforeImage}")`;
+      baApres.style.backgroundImage = `url("${afterImage}")`;
+      baAvant.style.backgroundSize = 'cover';
+      baApres.style.backgroundSize = 'cover';
+      baAvant.style.backgroundPosition = 'center';
+      baApres.style.backgroundPosition = 'center';
+    };
+
+    const updateRangeFromPointer = (clientX) => {
+      const bounds = beforeAfterViewer.getBoundingClientRect();
+      if (!bounds.width) {
+        return;
+      }
+
+      const ratio = (clientX - bounds.left) / bounds.width;
+      const value = Math.min(100, Math.max(0, Math.round(ratio * 100)));
+      beforeAfterRange.value = String(value);
+      updateBeforeAfter();
+    };
+
     beforeAfterRange.addEventListener('input', updateBeforeAfter);
+    beforeAfterViewer.addEventListener('pointerdown', (event) => {
+      isPointerDragging = true;
+      if (typeof beforeAfterViewer.setPointerCapture === 'function') {
+        beforeAfterViewer.setPointerCapture(event.pointerId);
+      }
+      updateRangeFromPointer(event.clientX);
+    });
+    beforeAfterViewer.addEventListener('pointermove', (event) => {
+      if (!isPointerDragging) {
+        return;
+      }
+
+      updateRangeFromPointer(event.clientX);
+    });
+    beforeAfterViewer.addEventListener('pointerup', (event) => {
+      isPointerDragging = false;
+      if (typeof beforeAfterViewer.releasePointerCapture === 'function') {
+        beforeAfterViewer.releasePointerCapture(event.pointerId);
+      }
+    });
+    beforeAfterViewer.addEventListener('pointercancel', () => {
+      isPointerDragging = false;
+    });
     updateBeforeAfter();
 
-    const realisationCards = document.querySelectorAll('.realisation-item[data-compare-image]');
+    const realisationCards = document.querySelectorAll('.realisation-item[data-compare-image], .realisation-item[data-before-image]');
+
+    const syncRealisationBadges = (activeCard) => {
+      realisationCards.forEach((item) => {
+        const badge = item.querySelector('.realisation-badge');
+        if (!badge) {
+          return;
+        }
+
+        const defaultLabel = item.getAttribute('data-badge-label') || 'Voir le rendu';
+        badge.textContent = item === activeCard ? 'Vue active' : defaultLabel;
+      });
+    };
 
     const applyRealisationSelection = (card) => {
       if (!card) {
@@ -197,9 +265,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const compareImage = card.getAttribute('data-compare-image');
+      const beforeImage = card.getAttribute('data-before-image');
+      const afterImage = card.getAttribute('data-after-image');
       const title = card.getAttribute('data-title');
       const description = card.getAttribute('data-description');
       const alt = card.getAttribute('data-alt') || '';
+      const mode = card.getAttribute('data-mode') || 'compare-sheet';
 
       realisationCards.forEach((item) => {
         item.classList.remove('is-active');
@@ -208,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       card.classList.add('is-active');
       card.setAttribute('aria-pressed', 'true');
+      syncRealisationBadges(card);
 
       if (beforeAfterTitle && title) {
         beforeAfterTitle.textContent = title;
@@ -217,9 +289,13 @@ document.addEventListener('DOMContentLoaded', () => {
         beforeAfterDescription.textContent = description;
       }
 
-      const imageUrl = `url("${compareImage}")`;
-      baAvant.style.backgroundImage = imageUrl;
-      baApres.style.backgroundImage = imageUrl;
+      if (mode === 'split' && beforeImage && afterImage) {
+        setSplitMode(beforeImage, afterImage);
+      } else if (compareImage) {
+        setCompareSheetMode(compareImage);
+      }
+
+      beforeAfterRange.value = '50';
       beforeAfterViewer.setAttribute('aria-label', `Comparaison avant apres - ${alt}`);
 
       updateBeforeAfter();
@@ -235,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    const defaultCard = document.querySelector('.realisation-item.is-active[data-compare-image]') || realisationCards[0];
+    const defaultCard = document.querySelector('.realisation-item.is-active[data-compare-image], .realisation-item.is-active[data-before-image]') || realisationCards[0];
     if (defaultCard) {
       applyRealisationSelection(defaultCard);
     }
